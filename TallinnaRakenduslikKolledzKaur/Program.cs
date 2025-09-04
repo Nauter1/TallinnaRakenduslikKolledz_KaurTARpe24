@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TallinnaRakenduslikKolledzKaur.Data;
+
 namespace TallinnaRakenduslikKolledzKaur
 {
     public class Program
@@ -8,6 +11,7 @@ namespace TallinnaRakenduslikKolledzKaur
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<SchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
