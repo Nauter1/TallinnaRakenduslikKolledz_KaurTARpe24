@@ -9,7 +9,7 @@ namespace TallinnaRakenduslikKolledzKaur.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public ICollection<Enrollment>? Enrollments { get; set; }
-        public DateTime? EnrollmentDate { get; set; }
+        public DateTime EnrollmentDate { get; set; }
 
         public int? GPA { get; set; }
         public ICollection<Commendation>? Commendations { get; set; } /* Kiitused */
