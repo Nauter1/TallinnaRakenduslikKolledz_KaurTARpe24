@@ -30,7 +30,7 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,LastName,FirstName,EnrollmentDate,Commendments")] Student student)
+        public async Task<IActionResult> Create([Bind("Id, LastName,FirstName,EnrollmentDate,Commendments")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -83,5 +83,61 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             }
             return View(student);
         }
+                     [HttpGet]
+        public async Task<IActionResult>Edit(int? ID)
+        {
+            if (ID == null)
+            {
+                return NotFound();
+            }
+            var student = await _context.Students.FirstOrDefaultAsync(m => m.Id == ID);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            _context.Students.Update(student);
+            return View(student);
+        }
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditConfirmed([Bind("Id,LastName,FirstName,EnrollmentDate,Commendments")] Student student)
+        {
+            _context.Students.Update(student);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Clone(int? ID)
+        {
+            if (ID == null)
+            {
+                return NotFound();
+            }
+            var student = await _context.Students.FirstOrDefaultAsync(m => m.Id == ID);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            _context.Students.Update(student);
+            return View(student);
+        }
+        [HttpPost, ActionName("Clone")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CloneConfirmed([Bind("Id,LastName,FirstName,EnrollmentDate,Commendments")] Student student)
+        {
+            _context.Students.Add(student);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        /*
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditConfirmed(int? ID)
+        {
+            var student = await _context.Students.FindAsync(ID);
+            _context.Students.Update(student);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }                    */
     }
 }
