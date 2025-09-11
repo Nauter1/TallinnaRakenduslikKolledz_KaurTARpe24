@@ -23,6 +23,11 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         {
             return View();
         }
+        /// <summary>
+        ///  Lisa uus student
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,LastName,FirstName,EnrollmentDate,Commendments")] Student student)
@@ -36,6 +41,11 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             }
             return View(student);
         }
+        /// <summary>
+        ///  Get delete view for student
+        /// </summary>
+        /// <param name="ID">id of student</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Delete(int? ID)
         {
@@ -58,6 +68,20 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             _context.Students.Remove(student);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Details(int? ID)
+        {
+            if (ID == null)
+            {
+                return NotFound();
+            }
+            var student = await _context.Students.FirstOrDefaultAsync(m => m.Id == ID);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View(student);
         }
     }
 }

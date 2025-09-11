@@ -1,0 +1,44 @@
+﻿@model TallinnaRakenduslikKolledzKaur.Models.Student
+
+@{
+	ViewData["Title"] = "Viewing õpilane";
+}
+
+<div>
+	<h4>Õpilane @Model.FirstName @Model.LastName</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.LastName)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.LastName)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.FirstName)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.FirstName)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.EnrollmentDate)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.EnrollmentDate)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Commendations)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Commendations)</dd>
+	</dl>
+
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Enrollments)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Enrollments)</dd>
+	</dl>
+
+
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Marks)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Marks)</dd>
+	</dl>
+
+</div>
+
+
+<form asp-action="Tagasi">
+	<input type="hidden" asp-for="Id" />
+	<a asp-action="Index">Tagasi</a>
+</form>
