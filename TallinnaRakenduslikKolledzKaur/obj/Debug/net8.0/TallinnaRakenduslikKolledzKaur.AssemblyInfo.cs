@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TallinnaRakenduslikKolledzKaur")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f886470b99126475120381ac19e5c69972cef4ed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6a58477f49380879c441fa896b431bd7235b67a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TallinnaRakenduslikKolledzKaur")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TallinnaRakenduslikKolledzKaur")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
