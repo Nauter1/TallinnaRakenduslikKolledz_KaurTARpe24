@@ -38,23 +38,27 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             if (selectedCourses == null)
             {
                 instructor.CourseAssignments = new List<CourseAssignment>();
-                foreach (var course in selectedCourses)
+                if (selectedCourses != null)
                 {
-                    var courseToAdd = new CourseAssignment
+                    foreach (var course in selectedCourses)
                     {
-                        InstructorId = instructor.Id,
-                        CourseID = course
-                    };
-                    instructor.CourseAssignments.Add(courseToAdd);
+                        var courseToAdd = new CourseAssignment
+                        {
+                            InstructorId = instructor.Id,
+                            CourseID = course
+                        };
+                        instructor.CourseAssignments.Add(courseToAdd);
+                    }
                 }
             }
+            ModelState.Remove("selectedCourses");
             if (ModelState.IsValid)
             {
                 _context.Add(instructor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            PopulateAssignedCourseData(instructor);
+            //PopulateAssignedCourseData(instructor);
             return View(instructor);
         }
         private void PopulateAssignedCourseData(Instructor instructor)

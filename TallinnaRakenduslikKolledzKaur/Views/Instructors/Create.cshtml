@@ -1,0 +1,87 @@
+﻿@model TallinnaRakenduslikKolledzKaur.Models.Instructor
+@{ViewData["Title"] = "Lisa õpetaja";}
+<h1>Lisa Õpetaja</h1>
+<h4></h4>
+<hr/>
+<div class="row">
+	<div class="col-md-8">
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="LastName"></label>
+				<input asp-for="LastName" class="form-control"/>
+				<span asp-validation-for="LastName" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="FirstName"></label>
+				<input asp-for="FirstName" class="form-control" />
+				<span asp-validation-for="FirstName" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="HireDate"></label>
+				<input asp-for="HireDate" class="form-control" />
+				<span asp-validation-for="HireDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="OfficeAssignment"></label>
+				<input asp-for="OfficeAssignment" class="form-control" />
+				<span asp-validation-for="OfficeAssignment" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Comments"></label>
+				<input asp-for="Comments" class="form-control" />
+				<span asp-validation-for="Comments" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="BirthDate"></label>
+				<input asp-for="BirthDate" class="form-control" />
+				<span asp-validation-for="BirthDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="VacationDays"></label>
+				<input asp-for="VacationDays" class="form-control" />
+				<span asp-validation-for="VacationDays" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<table>
+						<tr>
+							@{
+								int count = 0;
+								List<TallinnaRakenduslikKolledzKaur.Models.AssignedCourseData> assignedCourses = ViewBag.Courses;
+								if (assignedCourses != null)
+								{
+									foreach (var course in assignedCourses)
+									{
+										if (count++ % 3 == 0)
+										{
+											@:</tr><tr>
+										}
+
+										@:<td>
+										<input
+										type="checkbox"
+										name="selectedCourses"
+										value="@course.CourseID"
+										@(Html.Raw(course.Assigned ? "checked=\"checked\"" : ""))
+										/>
+									}
+								}
+								else
+								{
+									@:Kursuseid ei leitud
+								}
+							}
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div>
+				<input type="submit" value="Sisesta" class="btn btn-primary"/>
+			</div>
+			<div>
+				<a asp-action="Index">Tühista Lisamine</a>
+			</div>
+		</form>
+	</div>
+</div>
