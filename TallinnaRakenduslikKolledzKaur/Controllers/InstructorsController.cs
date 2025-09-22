@@ -71,9 +71,9 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             {
                 vm.Add(new AssignedCourseData
                 {
-                   CourseID = course.CourseId,
-                   Title = course.Title,
-                   Assigned = instructorCourses.Contains(course.CourseId)
+                    CourseID = course.CourseId,
+                    Title = course.Title,
+                    Assigned = instructorCourses.Contains(course.CourseId)
                 });
             }
             ViewData["Courses"] = vm;
@@ -93,7 +93,7 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             }
             return View(deletableInstructor);
         }
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -116,6 +116,29 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
                 return NotFound();
             }
             return View(instructor);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(m => m.Id == Id);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+            _context.Instructors.Update(instructor);
+            return View(instructor);
+        }
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditConfirmed([Bind("Id,LastName,FirstName,HireDate,CourseAssignments,OfficeAssignment,VacationDays,Comments,BirthDate")] Instructor instructor)
+        {
+            _context.Instructors.Update(instructor);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }

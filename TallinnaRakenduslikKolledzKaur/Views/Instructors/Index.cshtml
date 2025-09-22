@@ -43,6 +43,7 @@
 						@course.Course.CourseId @: @course.Course.Title <br/>
 					}
 				</td>
+				<td>@Html.DisplayFor(modelItem => instructor.BirthDate)</td>
 				<td>
 					<a asp-action="Edit" asp-route-id="@instructor.Id">Muuda</a>
 					<a asp-action="Details" asp-route-id="@instructor.Id">Vaata</a>
