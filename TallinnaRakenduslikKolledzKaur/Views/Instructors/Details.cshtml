@@ -35,6 +35,9 @@
 		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.BirthDate)</dt>
 		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.BirthDate)</dd>
 	</dl>
+	<td>
+		<a asp-action="Edit" asp-route-id="@Model.Id">Muuda</a>
+	</td>
 </div>
 
 
