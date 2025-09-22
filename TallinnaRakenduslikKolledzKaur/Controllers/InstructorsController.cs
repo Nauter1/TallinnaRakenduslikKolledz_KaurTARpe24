@@ -140,6 +140,28 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        public async Task<IActionResult> Quickedit(int? Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(m => m.Id == Id);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+            _context.Instructors.Update(instructor);
+            return View(instructor);
+        }
+        [HttpPost, ActionName("Quickedit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> QuickeditConfirmed([Bind("Id,LastName,FirstName,HireDate,CourseAssignments,OfficeAssignment,VacationDays,Comments,BirthDate")] Instructor instructor)
+        {
+            _context.Instructors.Update(instructor);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
 }
                                                                  
