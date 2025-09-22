@@ -3,6 +3,10 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace TallinnaRakenduslikKolledzKaur.Models
 {
+    public enum Status
+    {
+        Employed,Fired,On_Vacation,Sick_Leave,Parental_Leave
+    }
     public class Instructor
     {
         [Key]
@@ -32,5 +36,6 @@ namespace TallinnaRakenduslikKolledzKaur.Models
         public int? VacationDays { get; set; }
         public string? Comments { get; set; }
         public DateTime? BirthDate { get; set; }
+        public Status? Status { get; set; }
     }
 }

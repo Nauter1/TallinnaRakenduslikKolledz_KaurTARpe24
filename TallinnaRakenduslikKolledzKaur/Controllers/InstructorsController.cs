@@ -134,7 +134,7 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         }
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditConfirmed([Bind("Id,LastName,FirstName,HireDate,CourseAssignments,OfficeAssignment,VacationDays,Comments,BirthDate")] Instructor instructor)
+        public async Task<IActionResult> EditConfirmed([Bind("Id,LastName,FirstName,HireDate,CourseAssignments,OfficeAssignment,VacationDays,Comments,BirthDate,Status")] Instructor instructor)
         {
             _context.Instructors.Update(instructor);
             await _context.SaveChangesAsync();
@@ -156,7 +156,7 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         }
         [HttpPost, ActionName("Quickedit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> QuickeditConfirmed([Bind("Id,LastName,FirstName,HireDate,CourseAssignments,OfficeAssignment,VacationDays,Comments,BirthDate")] Instructor instructor)
+        public async Task<IActionResult> QuickeditConfirmed([Bind("Id,LastName,FirstName,HireDate,CourseAssignments,OfficeAssignment,VacationDays,Comments,BirthDate,Status")] Instructor instructor)
         {
             _context.Instructors.Update(instructor);
             await _context.SaveChangesAsync();

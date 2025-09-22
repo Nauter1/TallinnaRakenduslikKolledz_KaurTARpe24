@@ -16,6 +16,7 @@
 			<th>Vacation Days</th>
 			<th>Comments</th>
 			<th>BirthDate</th>
+			<th>Staatus</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -44,6 +45,7 @@
 					}
 				</td>
 				<td>@Html.DisplayFor(modelItem => instructor.BirthDate)</td>
+				<td>@Html.DisplayFor(modelItem => instructor.Status)</td>
 				<td>
 					<a asp-action="Quickedit" asp-route-id="@instructor.Id">Kiirtegevus</a>
 					<a asp-action="Details" asp-route-id="@instructor.Id">Vaata</a>
