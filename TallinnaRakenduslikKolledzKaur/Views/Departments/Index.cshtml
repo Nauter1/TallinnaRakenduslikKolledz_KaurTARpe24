@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TallinnaRakenduslikKolledzKaur.Models.Department>
+@{
+	ViewData["Title"] = "Osakonnad";
+}
+<h1>Osakonnad</h1>
+<p>
+	<a asp-action="Create">Loo uus osakond</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>@Html.DisplayNameFor(Model => Model.Name)</th>
+			<th>@Html.DisplayNameFor(Model => Model.Budget)</th>
+			<th>@Html.DisplayNameFor(Model => Model.StartDate)</th>
+			<th>@Html.DisplayNameFor(Model => Model.Administrator)</th>
+			<th>@Html.DisplayNameFor(Model => Model.RomVersion)</th>
+			<th>@Html.DisplayNameFor(Model => Model.Accomplishments)</th>
+			<th>@Html.DisplayNameFor(Model => Model.WastedHours)</th>   <!-- woag, -->
+			<th>Tööriistad</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var department in Model)
+		{
+			<tr>
+				<td> @Html.DisplayFor(modelItem => department.Name) </td>
+				<td> @Html.DisplayFor(modelItem => department.Budget) </td>
+				<td> @Html.DisplayFor(modelItem => department.StartDate) </td>
+				<td> @Html.DisplayFor(modelItem => department.Administrator) </td>
+				<td> @Html.DisplayFor(modelItem => department.RomVersion) </td>
+				<td> @Html.DisplayFor(modelItem => department.Accomplishments) </td>
+				<td> @Html.DisplayFor(modelItem => department.WastedHours) </td>
+				<td>
+					@* /* Muuda */ *@
+
+					@* /* Vaata */ *@
+
+					@* /* Vaata Admin */ *@
+
+					@* /* Kustuta */ *@
+					<a asp-action="Delete" asp-route-id="@department.DepartmentID" class="btn btn-danger">Eemalda</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
