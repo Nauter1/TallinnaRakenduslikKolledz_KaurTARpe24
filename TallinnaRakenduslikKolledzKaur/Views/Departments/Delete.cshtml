@@ -1,0 +1,94 @@
+﻿@model TallinnaRakenduslikKolledzKaur.Models.Department
+
+@if (ViewBag.deletion == true)
+{
+
+	ViewData["Title"] = "Kustuta osakond";
+
+<h2>@Html.DisplayFor(modelItem => Model.Name)</h2>
+
+<p>
+	<h3>Kustuta Osakond:</h3>
+</p>
+<div>
+	<hr />
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Name)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Name)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.DepartmentID)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.DepartmentID)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Staplers)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Staplers)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.RowVersion)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.RowVersion)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Budget)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Budget)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.StartDate)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.StartDate)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Accomplishments)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Accomplishments)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.WastedHours)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.WastedHours)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.InstructorID)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.InstructorID)</dt>
+
+	<form asp-action="Delete">
+		<input type="hidden" asp-for="DepartmentID" />
+		<input type="hidden" asp-for="RowVersion"/>
+		<input type="submit" value="Kustuta Osakond" class="btn btn-danger" /> | <a asp-action="Index">Tühista</a>
+	</form>
+</div>
+}
+
+else if (ViewBag.deletion == false)
+{
+
+	ViewData["Title"] = "Viewing õpetaja";
+
+
+<div>
+	<h4>Osakond @Model.Name</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Name)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Name)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.StartDate)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.StartDate)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Budget)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Budget)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.RowVersion)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.RowVersion)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Staplers)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Staplers)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Accomplishments)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Accomplishments)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.WastedHours)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.WastedHours)</dd>
+	</dl>
+		<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.InstructorID)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.InstructorID)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Administrator)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Administrator)</dd>
+	</dl>
+</div>
+
+
+<form asp-action="Tagasi">
+	<input type="hidden" asp-for="DepartmentID" />
+	<a asp-action="Index">Tagasi</a>
+</form>
+}

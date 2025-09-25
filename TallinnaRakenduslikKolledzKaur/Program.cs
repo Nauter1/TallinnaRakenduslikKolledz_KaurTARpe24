@@ -14,6 +14,7 @@ namespace TallinnaRakenduslikKolledzKaur
             builder.Services.AddDbContext<SchoolContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
+            CreateDbIfNotExists(app);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -35,6 +36,24 @@ namespace TallinnaRakenduslikKolledzKaur
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+        }
+
+        private static void CreateDbIfNotExists(IHost app)
+        {
+            using (var scope = app.Services.CreateScope())
+            { 
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<SchoolContext>();
+                    Dbinitializer.Initialize(context);
+                }
+                catch (Exception ex)
+                {
+                    var logger=services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "Error occured on creating DB");
+                }
+            }
         }
     }
 }

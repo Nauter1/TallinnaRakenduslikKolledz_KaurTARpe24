@@ -13,7 +13,7 @@
 			<th>@Html.DisplayNameFor(Model => Model.Budget)</th>
 			<th>@Html.DisplayNameFor(Model => Model.StartDate)</th>
 			<th>@Html.DisplayNameFor(Model => Model.Administrator)</th>
-			<th>@Html.DisplayNameFor(Model => Model.RomVersion)</th>
+			<th>@Html.DisplayNameFor(Model => Model.RowVersion)</th>
 			<th>@Html.DisplayNameFor(Model => Model.Accomplishments)</th>
 			<th>@Html.DisplayNameFor(Model => Model.WastedHours)</th>   <!-- woag, -->
 			<th>Tööriistad</th>
@@ -27,12 +27,12 @@
 				<td> @Html.DisplayFor(modelItem => department.Budget) </td>
 				<td> @Html.DisplayFor(modelItem => department.StartDate) </td>
 				<td> @Html.DisplayFor(modelItem => department.Administrator) </td>
-				<td> @Html.DisplayFor(modelItem => department.RomVersion) </td>
+				<td> @Html.DisplayFor(modelItem => department.RowVersion) </td>
 				<td> @Html.DisplayFor(modelItem => department.Accomplishments) </td>
 				<td> @Html.DisplayFor(modelItem => department.WastedHours) </td>
 				<td>
 					@* /* Muuda */ *@
-
+					<a asp-action="Details" asp-route-id="@department.DepartmentID" class="btn btn-primary">Detail</a>
 					@* /* Vaata */ *@
 
 					@* /* Vaata Admin */ *@

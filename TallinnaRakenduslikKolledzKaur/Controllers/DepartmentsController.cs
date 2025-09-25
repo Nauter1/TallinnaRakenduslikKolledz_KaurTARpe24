@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TallinnaRakenduslikKolledzKaur.Data;
+using TallinnaRakenduslikKolledzKaur.Models;
 
 namespace TallinnaRakenduslikKolledzKaur.Controllers
 {
@@ -17,5 +19,71 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             var schoolContext = _context.Departments.Include(d => d.Administrator);
             return View(await schoolContext.ToListAsync());
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            ViewData["InstructorID"] = new SelectList(_context.Instructors,"Id", "FullName");
+            /*ViewData["StudentId"] = new SelectList(_context.Students, "Id", "LastName", "FirstName");*/
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Name,Budget,StartDate,RowVersion,InstructorId,Staplers,WastedHours")]Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(department);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, "Id", "FullName", department.InstructorID);
+            /*ViewData["CourseStatus"] = new SelectList(_context.Instructors,"Id",department.CurrentStatus.ToString)*/
+            return View(department);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            ViewData["deletion"] = true;
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var department = await _context.Departments.FirstOrDefaultAsync(d => d.DepartmentID == id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+            return View(department);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Department department)
+        {
+            if (await _context.Departments.AnyAsync(m => m.DepartmentID == department.DepartmentID))
+            {
+                _context.Departments.Remove(department);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int? id)
+        {
+            ViewData["deletion"] = false;
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var department = await _context.Departments.FirstOrDefaultAsync(d => d.DepartmentID == id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+            return View("Delete", department);
+        }
     }
+
 }
