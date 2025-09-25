@@ -23,6 +23,7 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["creation"] = true;
             ViewData["InstructorID"] = new SelectList(_context.Instructors,"Id", "FullName");
             /*ViewData["StudentId"] = new SelectList(_context.Students, "Id", "LastName", "FirstName");*/
             return View();
@@ -40,6 +41,30 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             ViewData["InstructorID"] = new SelectList(_context.Instructors, "Id", "FullName", department.InstructorID);
             /*ViewData["CourseStatus"] = new SelectList(_context.Instructors,"Id",department.CurrentStatus.ToString)*/
             return View(department);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            ViewData["creation"] = false;
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var department = await _context.Departments.FirstOrDefaultAsync(d => d.DepartmentID == id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+            _context.Departments.Update(department);
+            return View("Create", department);
+        }
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditConfirmed([Bind("Name,Budget,StartDate,RowVersion,InstructorId,Staplers,WastedHours")] Department department)
+        {
+            _context.Departments.Update(department);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
