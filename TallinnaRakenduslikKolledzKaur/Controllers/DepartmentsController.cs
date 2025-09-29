@@ -55,12 +55,12 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             {
                 return NotFound();
             }
-            _context.Departments.Update(department);
+            /*_context.Departments.Update(department);        */
             return View("Create", department);
         }
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditConfirmed([Bind("Name,Budget,StartDate,RowVersion,InstructorId,Staplers,WastedHours")] Department department)
+        public async Task<IActionResult> EditConfirmed([Bind("DepartmentID,Name,Budget,StartDate,RowVersion,InstructorId,Staplers,WastedHours")] Department department)
         {
             _context.Departments.Update(department);
             await _context.SaveChangesAsync();
