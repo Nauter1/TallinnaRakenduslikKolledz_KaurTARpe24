@@ -15,10 +15,10 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var courses = _context.Courses.Include(c => c.Department).AsNoTracking();
-            return View(courses);
+            var courses = _context.Courses.Include(c => c.Department);
+            return View(await courses.ToListAsync());
         }
         [HttpGet]
         public IActionResult Create()
