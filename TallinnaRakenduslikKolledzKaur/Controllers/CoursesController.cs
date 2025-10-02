@@ -42,6 +42,7 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewData["deletion"] = true;
             if (id == null || _context.Courses == null)
             {
                 return NotFound();
@@ -68,6 +69,21 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             }
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Details(int? id)
+        {
+            ViewData["deletion"] = false;
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var courses = await _context.Courses.Include(c => c.Department).AsNoTracking().FirstOrDefaultAsync(m => m.CourseId == id);
+            if (courses == null)
+            {
+                return NotFound();
+            }
+            return View("Delete", courses);
         }
         private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
         {

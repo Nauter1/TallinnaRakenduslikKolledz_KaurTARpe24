@@ -1,0 +1,75 @@
+﻿@model TallinnaRakenduslikKolledzKaur.Models.Course
+
+@if (ViewBag.deletion == true)
+{
+
+	ViewData["Title"] = "Kustuta osakond";
+
+	<h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
+
+	<p>
+		<h3>Kustuta Osakond:</h3>
+	</p>
+	<div>
+		<hr />
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Title)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Title)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Credits)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Credits)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Enrollments)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Enrollments)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Department)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Department)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.DepartmentID)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(Model => Model.DepartmentID)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.CourseAssignments)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(Model => Model.CourseAssignments)</dt>
+
+		<form asp-action="Delete">
+			<input type="hidden" asp-for="CourseId" />
+			<input type="submit" value="Kustuta Osakond" class="btn btn-danger" /> | <a asp-action="Index">Tühista</a>
+		</form>
+	</div>
+}
+
+else if (ViewBag.deletion == false)
+{
+
+	ViewData["Title"] = "Viewing õpetaja";
+
+
+	<div>
+		<h4>Osakond @Model.Title</h4>
+		<hr />
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Title)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Title)</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Credits)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Credits)</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Enrollments)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Enrollments)</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Department)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Department)</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.DepartmentID)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.DepartmentID)</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.CourseAssignments)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.CourseAssignments)</dd>
+		</dl>
+	</div>
+
+
+	<form asp-action="Tagasi">
+		<input type="hidden" asp-for="DepartmentID" />
+		<a asp-action="Index">Tagasi</a>
+	</form>
+}

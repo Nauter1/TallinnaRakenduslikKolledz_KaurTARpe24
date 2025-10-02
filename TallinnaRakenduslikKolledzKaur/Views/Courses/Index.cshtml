@@ -14,8 +14,9 @@
 			<th>@Html.DisplayNameFor(Model => Model.CourseId)</th>
 			<th>@Html.DisplayNameFor(Model => Model.Title)</th>
 			<th>@Html.DisplayNameFor(Model => Model.Credits)</th>
-			<th>@Html.DisplayNameFor(Model => Model.Department.Name)</th>
+			<th>Department</th>
 			<th>@Html.DisplayNameFor(Model => Model.Department.Administrator.FullName)</th>
+			<th>Tööriistad</th>
 		</tr>
 	</thead>
 
@@ -33,7 +34,8 @@
 
 				<td>@Html.DisplayFor(modelItem => course.Department.Administrator.FullName)	   		 </td>
 
-				<td><a asp-action="Delete" asp-route-id="@course.CourseId">Kustuta</a>	 </td>
+				<td><a asp-action="Delete" asp-route-id="@course.CourseId">Kustuta</a>
+					<a asp-action="Details" asp-route-id="@course.CourseId">Details</a></td>
 			</tr>
 		}
 	</tbody>
