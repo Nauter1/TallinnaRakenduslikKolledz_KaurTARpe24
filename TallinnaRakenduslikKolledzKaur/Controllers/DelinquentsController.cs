@@ -17,7 +17,7 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         {
             return View(await _context.Delinquents.ToListAsync());
         }
-        /*
+        
         [HttpGet]
         public IActionResult Create()
         {
@@ -25,17 +25,17 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Book book)
+        public async Task<IActionResult> Create(Delinquent delinquent)
         {
             if (ModelState.IsValid)
             {
-                _context.Books.Add(book);
+                _context.Delinquents.Add(delinquent);
                 await _context.SaveChangesAsync();
             }
 
             return RedirectToAction("Index");
         }
-           
+                    /*
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
