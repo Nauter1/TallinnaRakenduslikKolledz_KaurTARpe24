@@ -1,7 +1,10 @@
 ﻿@model TallinnaRakenduslikKolledzKaur.Models.Course
-@{
+
+
+@if (ViewBag.creation == true)
+{
 	ViewData["Title"] = "Uus Kursus";
-}
+
 <h1>Tee uus kursus</h1>
 <h4>Sisesta info:</h4>
 <hr/>
@@ -37,3 +40,67 @@
 		 </form>
 	</div>
 </div>
+}
+
+else if (ViewBag.creation == false)
+{
+
+	ViewData["Title"] = "Muuda Kursus";
+
+
+	<h1>Muuda Kursus</h1>
+	<hr />
+	<div class="row">
+		<div class="col-md-4">
+			<form asp-action="Edit">
+				<input type="hidden" asp-for="@Model.CourseId" />
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+				<div class="form-group">
+					<label asp-for="Title" class="control-label"></label>
+					<input asp-for="Title" class="form-control" />
+					<span asp-validation-for="Title" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Credits" class="control-label"></label>
+					<input asp-for="Credits" class="form-control" />
+					<span asp-validation-for="Credits" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Enrollments" class="control-label"></label>
+					<input asp-for="Enrollments" class="form-control" />
+					<span asp-validation-for="Enrollments" class="text-danger"></span>
+				</div>
+				<div>
+					<label asp-for="Department" class="control-label"></label>
+					<select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID">
+						<option value="" class="form-control">--Vali Osakond--</option>
+					</select>
+					<span asp-validation-for="DepartmentID" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="CourseAssignments" class="control-label"></label>
+					<input asp-for="CourseAssignments" class="form-control" />
+					<span asp-validation-for="CourseAssignments" class="text-danger"></span>
+				</div>
+				<!--<div class="form-group">
+						<label asp-for="InstructorID" class="control-label"></label>
+						<input asp-for="InstructorID" class="form-control" />
+						<span asp-validation-for="InstructorID" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+						<label asp-for="Administrator" class="control-label"></label>
+						<input asp-for="Administrator" class="form-control" />
+						<span asp-validation-for="Administrator" class="text-danger"></span>
+				</div>		 -->
+				<div class="form-group">
+					<input type="submit" asp-route-id="@Model.DepartmentID" value="Edit" class="btn btn-primary" />
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div>
+		<a asp-action="Index">Mine tagasi loendisse</a>
+	</div>
+}

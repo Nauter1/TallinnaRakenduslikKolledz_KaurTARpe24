@@ -3,12 +3,12 @@
 @if (ViewBag.deletion == true)
 {
 
-	ViewData["Title"] = "Kustuta osakond";
+	ViewData["Title"] = "Kustuta Kursus";
 
 	<h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
 
 	<p>
-		<h3>Kustuta Osakond:</h3>
+		<h3>Kustuta Kursus:</h3>
 	</p>
 	<div>
 		<hr />
@@ -35,11 +35,11 @@
 else if (ViewBag.deletion == false)
 {
 
-	ViewData["Title"] = "Viewing õpetaja";
+	ViewData["Title"] = "Viewing Kursus";
 
 
 	<div>
-		<h4>Osakond @Model.Title</h4>
+		<h4>Kursus @Model.Title</h4>
 		<hr />
 		<dl class="row">
 			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Title)</dt>
