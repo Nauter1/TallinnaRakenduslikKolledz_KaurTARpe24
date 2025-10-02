@@ -1,0 +1,27 @@
+﻿@model TallinnaRakenduslikKolledzKaur.Models.Book
+
+@{
+	ViewData["Title"] = "Kustuta Õpetaja";
+}
+
+<h1>Kustuta Õpetaja</h1>
+<h3>
+	Kas oled kindel et tahad kustudada @Html.DisplayFor(Model => Model.Title)
+</h3>
+<div>
+	<h4>Raamat</h4>
+	<hr />
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Title)</dt>
+	<dt class="col-sm-10">@Html.DisplayFor(Model => Model.Title)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.PageCount)</dt>
+	<dt class="col-sm-10">@Html.DisplayFor(Model => Model.PageCount)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.TotalStock)</dt>
+	<dt class="col-sm-10">@Html.DisplayFor(Model => Model.TotalStock)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.AmountBorrowed)</dt>
+	<dt class="col-sm-10">@Html.DisplayFor(Model => Model.AmountBorrowed)</dt>
+
+	<form asp-action="Delete">
+		<input type="hidden" asp-for="BookId" />
+		<input type="submit" value="Kustuta Õpetaja" class="btn btn-danger" /> | <a asp-action="Index">Tühista</a>
+	</form>
+</div>

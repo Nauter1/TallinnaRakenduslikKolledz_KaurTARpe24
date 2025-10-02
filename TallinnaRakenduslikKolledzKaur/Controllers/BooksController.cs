@@ -36,38 +36,35 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
 
             return RedirectToAction("Index");
         }
-        /*
+
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             ViewData["deletion"] = true;
-            if (id == null || _context.Courses == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var courses = await _context.Courses.Include(c => c.Department).AsNoTracking().FirstOrDefaultAsync(m => m.CourseId == id);
-            if (courses == null)
+            var books = await _context.Books.FirstOrDefaultAsync(b => b.BookId == id);
+            if (books == null)
             {
                 return NotFound();
             }
-            return View(courses);
+            return View(books);
         }
-        [HttpPost, ActionName("Delete")]
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(Book book)
         {
-            if (_context.Courses == null)
+            if (await _context.Books.AnyAsync(b => b.BookId == book.BookId))
             {
-                return NotFound();
+                _context.Books.Remove(book);
+                await _context.SaveChangesAsync();
             }
-            var course = await _context.Courses.FindAsync(id);
-            if (course != null)
-            {
-                _context.Courses.Remove(course);
-            }
-            await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        /*
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
