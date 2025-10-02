@@ -19,25 +19,24 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         {
             return View(await _context.Books.ToListAsync());
         }
-        /*[HttpGet]
+        [HttpGet]
         public IActionResult Create()
         {
-            PopulateDepartmentsDropDownList();
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Course course)
+        public async Task<IActionResult> Create(Book book)
         {
             if (ModelState.IsValid)
             {
-                _context.Courses.Add(course);
+                _context.Books.Add(book);
                 await _context.SaveChangesAsync();
-                PopulateDepartmentsDropDownList(course.DepartmentID);
             }
 
             return RedirectToAction("Index");
         }
+        /*
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
