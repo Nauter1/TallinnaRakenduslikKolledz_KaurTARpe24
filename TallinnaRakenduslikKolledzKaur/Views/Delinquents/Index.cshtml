@@ -24,6 +24,9 @@
 			<th>
 				@Html.DisplayNameFor(Model => Model.Description)
 			</th>
+			<th>
+				@Html.DisplayNameFor(Model => Model.Position)
+			</th>
 			<th>Tööriistad</th>
 		</tr>
 	</thead>
@@ -45,6 +48,9 @@
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => delinquent.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => delinquent.Position)
 				</td>
 				<td>
 					<a asp-action="Edit" asp-route-id="@delinquent.BreakerId">Muuda</a>

@@ -6,6 +6,10 @@ namespace TallinnaRakenduslikKolledzKaur.Models
     {
         Vandalism, IPhoneUser, Smoking, Bullying, AI_User
     }
+    public enum Positions
+    {
+        Student,Instructor
+    }
     public class Delinquent
     {
         [Key]
@@ -14,6 +18,8 @@ namespace TallinnaRakenduslikKolledzKaur.Models
         public string LastName { get; set; }
         public Violations Violations { get; set; }
         public string? Description { get; set; }
+        public Positions Position {  get; set; }
+
 
     }
 }
