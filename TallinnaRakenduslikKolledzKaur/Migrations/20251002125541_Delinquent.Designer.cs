@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TallinnaRakenduslikKolledzKaur.Data;
 
@@ -11,9 +12,11 @@ using TallinnaRakenduslikKolledzKaur.Data;
 namespace TallinnaRakenduslikKolledzKaur.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20251002125541_Delinquent")]
+    partial class Delinquent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,33 +112,6 @@ namespace TallinnaRakenduslikKolledzKaur.Migrations
                     b.HasIndex("InstructorId");
 
                     b.ToTable("CourseAssignment", (string)null);
-                });
-
-            modelBuilder.Entity("TallinnaRakenduslikKolledzKaur.Models.Delinquent", b =>
-                {
-                    b.Property<int>("BreakerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BreakerId"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Violations")
-                        .HasColumnType("int");
-
-                    b.HasKey("BreakerId");
-
-                    b.ToTable("Delinquents", (string)null);
                 });
 
             modelBuilder.Entity("TallinnaRakenduslikKolledzKaur.Models.Department", b =>
