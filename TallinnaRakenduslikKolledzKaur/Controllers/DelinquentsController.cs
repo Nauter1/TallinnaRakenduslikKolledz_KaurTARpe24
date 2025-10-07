@@ -50,6 +50,31 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             return View(delinquent);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+            var delinquent = await _context.Delinquents.FirstOrDefaultAsync(d => d.BreakerId == Id);
+            if (delinquent == null)
+            {
+                return NotFound();
+            }
+            _context.Delinquents.Update(delinquent);
+            return View(delinquent);
+        }
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditConfirmed([Bind("BreakerId,FirstName,LastName,Violations,Description,Position")] Delinquent delinquent)
+        {
+            _context.Delinquents.Update(delinquent);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+
         /*
 [HttpGet]
 public async Task<IActionResult> Delete(int? id)
@@ -80,31 +105,6 @@ return RedirectToAction("Index");
 }
 
 
-[HttpGet]
-public async Task<IActionResult> Edit(int? id)
-{
-PopulateDepartmentsDropDownList();
-ViewData["creation"] = false;
-if (id == null)
-{
-    return NotFound();
-}
-var courses = await _context.Courses.Include(c => c.Department).AsNoTracking().FirstOrDefaultAsync(m => m.CourseId == id);
-if (courses == null)
-{
-    return NotFound();
-}
-_context.Departments.Update(department);        
-return View("Create", courses);
-}
-[HttpPost, ActionName("Edit")]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> EditConfirmed([Bind("CourseId,Title,Credits,Enrollments,Department,DepartmentID,CourseAssignments")] Course course)
-{
-_context.Courses.Update(course);
-await _context.SaveChangesAsync();
-return RedirectToAction("Index");
-}
 
 private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
 {
