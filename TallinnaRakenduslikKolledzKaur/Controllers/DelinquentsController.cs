@@ -74,35 +74,35 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+            var delinquent = await _context.Delinquents.FirstOrDefaultAsync(d => d.BreakerId == Id);
+            if (delinquent == null)
+            {
+                return NotFound();
+            }
+            return View(delinquent);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Delinquent delinquent)
+        {
+            if (await _context.Delinquents.AnyAsync(d => d.BreakerId == delinquent.BreakerId))
+            {
+                _context.Delinquents.Remove(delinquent);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
+        }
 
         /*
-[HttpGet]
-public async Task<IActionResult> Delete(int? id)
-{
-ViewData["deletion"] = true;
-if (id == null)
-{
-    return NotFound();
-}
-var books = await _context.Books.FirstOrDefaultAsync(b => b.BookId == id);
-if (books == null)
-{
-    return NotFound();
-}
-return View(books);
-}
 
-[HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> Delete(Book book)
-{
-if (await _context.Books.AnyAsync(b => b.BookId == book.BookId))
-{
-    _context.Books.Remove(book);
-    await _context.SaveChangesAsync();
-}
-return RedirectToAction("Index");
-}
 
 
 

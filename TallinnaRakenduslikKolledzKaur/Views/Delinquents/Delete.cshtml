@@ -1,0 +1,29 @@
+﻿@model TallinnaRakenduslikKolledzKaur.Models.Delinquent
+
+@{
+	ViewData["Title"] = "Kustuta Delinquent";
+}
+
+<h1>Kustuta Delinquent</h1>
+<h3>
+	Kas oled kindel et tahad kustudada @Html.DisplayFor(Model => Model.FirstName)
+</h3>
+<div>
+	<h4>Delinquent</h4>
+	<hr />
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.LastName)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.LastName)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.FirstName)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.FirstName)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Violations)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Violations)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Description)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Description)</dt>
+	<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Position)</dt>
+	<dt class="col-sm-2">@Html.DisplayFor(Model => Model.Position)</dt>
+
+	<form asp-action="Delete">
+		<input type="hidden" asp-for="BreakerId" />
+		<input type="submit" value="Kustuta Delinquent" class="btn btn-danger" /> | <a asp-action="Index">Tühista</a>
+	</form>
+</div>
