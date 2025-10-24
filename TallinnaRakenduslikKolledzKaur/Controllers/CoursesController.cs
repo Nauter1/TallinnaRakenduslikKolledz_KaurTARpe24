@@ -24,6 +24,7 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         public IActionResult Create()
         {
             PopulateDepartmentsDropDownList();
+            ViewData["Creation"] = true;
             return View();
         }
         [HttpPost]
