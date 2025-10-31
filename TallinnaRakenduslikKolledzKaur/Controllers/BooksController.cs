@@ -38,7 +38,7 @@ namespace TallinnaRakenduslikKolledzKaur.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)                               // test
         {
             ViewData["deletion"] = true;
             if (id == null)
